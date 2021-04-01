@@ -1,6 +1,8 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../config/database';
 
+import Tierlist from './Tierlist';
+
 const User = sequelize.define('users', {
     id: {
         type: Sequelize.INTEGER,
@@ -8,7 +10,8 @@ const User = sequelize.define('users', {
         autoIncrement: true
     },
     username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
     },
     twitterAccount: {
         type: Sequelize.STRING
@@ -21,5 +24,15 @@ const User = sequelize.define('users', {
     timestamps: true
 });
 
+// Tierlist relationship
+User.hasMany(Tierlist, {
+    foreignKey: 'userId',
+    sourceKey: 'id'
+});
+
+Tierlist.belongsTo(User, {
+    foreignKey: 'userId',
+    sourceKey: 'id'
+});
 
 export default User;

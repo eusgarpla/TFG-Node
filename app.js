@@ -4,8 +4,10 @@ import morgan from 'morgan';
 const app = express()
 
 // Routes
-import userRoutes from './routes/users';
+import userRoutes from './routes/user';
 import tierlistRoutes from './routes/tierlist';
+import gameRoutes from './routes/game';
+import characterRoutes from './routes/character';
 
 // middlewares
 app.use(morgan('dev'));
@@ -13,6 +15,8 @@ app.use(json());
 
 app.use('/api/users',userRoutes);
 app.use('/api/tierlists', tierlistRoutes);
+app.use('/api/games', gameRoutes);
+app.use('/api/characters', characterRoutes);
 
 export default app;
 

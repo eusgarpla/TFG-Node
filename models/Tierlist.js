@@ -18,17 +18,13 @@ const Tierlist = sequelize.define('tierlists', {
     },
     userId: {
         type: Sequelize.INTEGER
+    },
+    gameId: {
+        type: Sequelize.INTEGER,
     }
 }, {
     tableName: 'Tierlist',
     timestamps: true
 });
 
-Tierlist.associate = (models) => {
-    Tierlist.belongsToMany(models.User, {
-        through: models.UserTierlist,
-        as: 'Tierlists',
-        foreignKey: 'userId'
-    });
-}
 export default Tierlist;
