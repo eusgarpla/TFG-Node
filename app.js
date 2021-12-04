@@ -3,6 +3,8 @@ import morgan from 'morgan';
 
 const app = express()
 
+var cors = require("cors")
+
 // Routes
 import userRoutes from './routes/user';
 import tierlistRoutes from './routes/tierlist';
@@ -12,6 +14,7 @@ import characterRoutes from './routes/character';
 // middlewares
 app.use(morgan('dev'));
 app.use(json());
+app.use(cors())
 
 app.use('/api/users',userRoutes);
 app.use('/api/tierlists', tierlistRoutes);
